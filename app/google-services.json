@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "669144362098",
+    "project_id": "vopet0028",
+    "storage_bucket": "vopet0028.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:669144362098:android:2038860167b73b501fe6eb",
+        "android_client_info": {
+          "package_name": "com.example.vopet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_tGddFRISFYP-MuGGRsP9fQbnPuK4lkc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

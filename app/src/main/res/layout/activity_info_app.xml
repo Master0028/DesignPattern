@@ -1,0 +1,76 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Header with Back Button and Title -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="8dp">
+
+        <Button
+            android:id="@+id/btn_back"
+            android:background="@null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/baseline_arrow_back_24"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="App introduction"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <!-- Application Information -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@drawable/ripple_effect1"
+        android:layout_marginVertical="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="App name: VOPET"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Purpose: Help users learn vocabulary effectively and easily."
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Android version: 6.0 or higher"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="App version: 1.0.0"
+            android:textSize="16sp"
+            android:textColor="@android:color/black" />
+
+    </LinearLayout>
+
+</LinearLayout>

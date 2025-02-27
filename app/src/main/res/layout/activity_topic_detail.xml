@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".activity.TopicDetailActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="40dp"
+                android:background="@drawable/baseline_arrow_back_24_bl"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/bg_folder_detail"/>
+            <TextView
+                android:id="@+id/topicName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="45sp"
+                android:gravity="center"
+                android:fontFamily="@font/itim"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:text="Topic's name" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="5dp"
+                android:background="#69BBB8"
+                android:layout_gravity="center"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="end"
+                android:layout_marginEnd="20dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnEdit"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/baseline_edit_24"/>
+
+                <Button
+                    android:id="@+id/btnFilter"
+                    android:layout_width="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/baseline_filter_alt_24"/>
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/overView"
+                android:layout_width="360dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardElevation="10dp"
+                android:layout_gravity="center"
+                app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="@color/white">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Overview"
+                        android:textSize="23sp"
+                        android:fontFamily="@font/itim"
+                        android:textColor="@color/black" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Priority words: "
+                            android:fontFamily="@font/itim"
+                            android:textSize="18sp"
+                            android:textColor="@color/black" />
+                        <TextView
+                            android:id="@+id/priority"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="12/30"
+                            android:fontFamily="@font/itim"
+                            android:textSize="18sp"
+                            android:textColor="@color/black" />
+                        <ProgressBar
+                            android:id="@+id/progressBar1"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="120dp"
+                            android:layout_height="8dp"
+                            android:progress="40"
+                            android:max="100"
+                            android:layout_marginLeft="29dp"
+                            android:progressDrawable="@drawable/custom_progress_bar"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Memoried words: "
+                            android:fontFamily="@font/itim"
+                            android:textSize="18sp"
+                            android:textColor="@color/black" />
+                        <TextView
+                            android:id="@+id/memoryWord"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="25/30"
+                            android:fontFamily="@font/itim"
+                            android:textSize="18sp"
+                            android:textColor="@color/black" />
+                        <ProgressBar
+                            android:id="@+id/progressBar2"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="120dp"
+                            android:layout_height="8dp"
+                            android:progress="70"
+                            android:max="100"
+                            android:layout_marginLeft="10dp"
+                            android:progressDrawable="@drawable/custom_progress_bar"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btnStudy"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:text="Study"
+                android:fontFamily="@font/itim"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:background="@drawable/rounded_btn5"/>
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/btnhome" />
+
+        <ImageButton
+            android:id="@+id/btnTopics"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/btntopic" />
+
+        <ImageButton
+            android:id="@+id/btnBXH"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/btnadd" />
+
+        <ImageButton
+            android:id="@+id/btnProfile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/btnprofile" />
+
+        <ImageButton
+            android:id="@+id/btnCommunity"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.1"
+            android:background="@null"
+            android:src="@drawable/btncommunity" />
+    </LinearLayout>
+</LinearLayout>

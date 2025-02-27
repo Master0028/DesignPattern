@@ -1,0 +1,152 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Header with Back Button and Title -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="8dp">
+
+        <Button
+            android:id="@+id/btn_back"
+            android:background="@null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/back_black" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="Setting"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+    <!-- Switch for Light/Dark Mode -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:gravity="center_vertical"
+        android:paddingVertical="8dp"
+        android:background="@drawable/ripple_effect1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textAllCaps="false"
+            android:fontFamily="@font/itim"
+            android:padding="10dp"
+            android:text="Switch mode" />
+
+        <Switch
+            android:layout_marginHorizontal="30dp"
+            android:id="@+id/switch_dark_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <!-- Button for App Introduction -->
+    <Button
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:id="@+id/btn_app_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="App Introduction"
+        android:background="@drawable/ripple_effect1"
+        android:fontFamily="@font/itim"
+        android:textSize="20sp"
+        android:layout_gravity="center_vertical"
+        android:textColor="@android:color/black"
+        android:layout_marginVertical="8dp" />
+    <!-- Button to Delete Account -->
+
+    <!-- Text Size Options -->
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change text size"
+        android:fontFamily="@font/itim"
+        android:textSize="20sp" />
+
+    <RadioGroup
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="20dp"
+        android:id="@+id/radio_group_text_size"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/radio_text_size_small"
+            android:layout_width="wrap_content"
+            android:fontFamily="@font/itim"
+            android:textSize="20sp"
+            android:layout_height="wrap_content"
+            android:text="Small" />
+
+        <RadioButton
+            android:id="@+id/radio_text_size_normal"
+            android:layout_width="wrap_content"
+            android:fontFamily="@font/itim"
+            android:textSize="20sp"
+            android:layout_height="wrap_content"
+            android:text="Normal"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/radio_text_size_large"
+            android:layout_width="wrap_content"
+            android:fontFamily="@font/itim"
+            android:textSize="20sp"
+            android:layout_height="wrap_content"
+            android:text="Large" />
+    </RadioGroup>
+
+    <Button
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:id="@+id/btnDelAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_red_dark"
+        android:gravity="center"
+        android:background="@drawable/ripple_effect1"
+        android:padding="10dp"
+        android:drawablePadding="10dp"
+        android:foreground="@drawable/effect"
+        android:clickable="true"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/itim"
+        android:layout_gravity="center"
+        android:text="Delete account"/>
+
+    <!-- Button to Clear Learning History -->
+    <Button
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:id="@+id/btn_clear_history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delete history studied"
+        android:background="@drawable/ripple_effect1"
+        android:fontFamily="@font/itim"
+        android:textSize="20sp"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_marginVertical="8dp" />
+
+</LinearLayout>

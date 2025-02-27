@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".activity.FindAndFillActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnMenu"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/menu3"/>
+
+            <TextView
+                android:id="@+id/userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="45sp"
+                android:fontFamily="@font/itim"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="30dp"
+                android:text="Find and fill" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="110dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/find"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="5dp"
+                android:background="#69BBB8"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dashboard"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="20dp"
+                android:fontFamily="@font/itim"
+                android:textSize="25sp"/>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="106dp"
+                android:alignmentMode="alignMargins"
+                android:columnCount="2"
+                android:columnOrderPreserved="false"
+                android:rowCount="1">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="170dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="10dp"
+                    android:backgroundTint="#69BBB8"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="10dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/itim"
+                            android:text="10"
+                            android:textColor="@color/white"
+                            android:textSize="22sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:fontFamily="@font/itim"
+                            android:text="Studied card"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="22sp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="170dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="10dp"
+                    android:backgroundTint="#69BBB8"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="10dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvCountTopic"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/itim"
+                            android:text="30"
+                            android:textColor="@color/white"
+                            android:textSize="22sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:fontFamily="@font/itim"
+                            android:text="Card created"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="22sp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </GridLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Popular topics"
+                    android:fontFamily="@font/itim"
+                    android:textSize="25sp"/>
+<!--                <Spinner-->
+<!--                    android:id="@+id/spinner"-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:background="@drawable/spinner_border" />-->
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/btnhome" />
+
+        <ImageButton
+            android:id="@+id/btnTopics"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/btntopic" />
+
+        <ImageButton
+            android:id="@+id/btnAdd"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/btnadd" />
+
+        <ImageButton
+            android:id="@+id/btnProfile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/btnprofile" />
+
+        <ImageButton
+            android:id="@+id/btnCommunity"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.1"
+            android:background="@null"
+            android:src="@drawable/btncommunity" />
+    </LinearLayout>
+</LinearLayout>

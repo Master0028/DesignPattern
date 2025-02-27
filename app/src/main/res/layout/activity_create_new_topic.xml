@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".activity.CreateNewTopicActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="40dp"
+                android:background="@drawable/baseline_arrow_back_24_bl"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/bg_folder_detail"/>
+            <EditText
+                android:id="@+id/topicName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="40sp"
+                android:background="@null"
+                android:fontFamily="@font/itim"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="30dp"
+                android:gravity="center"
+                android:hint="Enter topic's name"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="5dp"
+                android:background="#69BBB8"
+                android:layout_gravity="center"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="end"
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btnSetting"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/baseline_settings_24_bl"/>
+                <Button
+                    android:id="@+id/btnImport"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Import"
+                    android:layout_height="40dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            </LinearLayout>
+            <Button
+                android:id="@+id/btnAddWord"
+                android:layout_width="140dp"
+                android:layout_height="40dp"
+                android:text="Add word"
+                android:fontFamily="@font/itim"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:background="@drawable/rounded_btn5"/>
+
+            <Button
+                android:id="@+id/btnCreate"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:text="Create"
+                android:fontFamily="@font/itim"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:background="@drawable/rounded_btn5"/>
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/btnhome" />
+
+        <ImageButton
+            android:id="@+id/btnTopics"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/btntopic" />
+
+        <ImageButton
+            android:id="@+id/btnAdd1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/btnadd" />
+
+        <ImageButton
+            android:id="@+id/btnProfile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/btnprofile" />
+
+        <ImageButton
+            android:id="@+id/btnCommunity"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.1"
+            android:background="@null"
+            android:src="@drawable/btncommunity" />
+    </LinearLayout>
+</LinearLayout>

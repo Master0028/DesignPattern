@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="#8069BBB8"
+    tools:context=".activity.StudyByFindAndFillActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/tvTopicName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Topic's name"
+                    android:fontFamily="@font/itim"
+                    android:textSize="30sp"
+                    android:textColor="@color/black" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvStt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="160dp"
+            android:fontFamily="@font/itim"
+            android:text="1/20"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="470dp"
+            android:orientation="vertical"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/flashcard_background">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="15dp"
+                android:gravity="end">
+
+                <ImageButton
+                    android:id="@+id/ibSound"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_volume_up_24"
+                    android:background="?attr/selectableItemBackgroundBorderless"/>
+
+                <ImageButton
+                    android:id="@+id/ibStar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_star_24"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:layout_marginStart="8dp"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Define: "
+                android:fontFamily="@font/itim"
+                android:layout_marginLeft="30dp"
+                android:textSize="22sp"
+                android:textColor="#69BBB8"/>
+            <TextView
+                android:id="@+id/tvQuestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Khả năng, năng lực"
+                android:fontFamily="@font/itim"
+                android:textSize="22sp"
+                android:layout_gravity="center"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/tvPronounce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" /əˈbɪl.ə.ti/"
+                android:fontFamily="@font/itim"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:textColor="@color/black"/>
+            <ImageView
+                android:id="@+id/imgWord"
+                android:layout_width="120dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/bg_folder_detail"/>
+            <TextView
+                android:id="@+id/enterAnswer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enter your answer: "
+                android:fontFamily="@font/itim"
+                android:layout_marginLeft="30dp"
+                android:textSize="18sp"
+                android:textColor="#69BBB8"/>
+            <AutoCompleteTextView
+                android:id="@+id/meanEnglish"
+                android:layout_width="310dp"
+                android:layout_height="50dp"
+                android:textColor="#9F9B9B"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:hint="Enter english"
+                android:padding="12dp"
+                android:fontFamily="@font/itim"
+                android:background="@drawable/edittext_border"/>
+            <TextView
+                android:id="@+id/tvResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_marginLeft="30dp"
+                android:fontFamily="@font/itim"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                android:visibility="gone"/>
+            <TextView
+                android:id="@+id/incorrectAnswer"
+                android:layout_width="310dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:padding="12dp"
+                android:textSize="16sp"
+                android:fontFamily="@font/itim"
+                android:textColor="@android:color/black"
+                android:background="@drawable/edittext_incorrect_border"
+                android:drawableEnd="@drawable/incorrect_icon"
+                android:visibility="gone" />
+            <TextView
+                android:id="@+id/correctAnswer"
+                android:layout_width="310dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:padding="12dp"
+                android:textSize="16sp"
+                android:fontFamily="@font/itim"
+                android:textColor="@android:color/black"
+                android:background="@drawable/edittext_correct_border"
+                android:enabled="false"
+                android:drawableEnd="@drawable/correct_icon"
+                android:visibility="gone" />
+            <Button
+                android:id="@+id/btnSubmit"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:text="Submit"
+                android:fontFamily="@font/itim"
+                android:layout_gravity="center"
+                android:textSize="18sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="100dp"
+                android:textColor="@color/black"
+                android:textAllCaps="false"
+                android:background="@drawable/rounded_btn4"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/btnhome" />
+
+        <ImageButton
+            android:id="@+id/btnTopics"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/btntopic" />
+
+        <ImageButton
+            android:id="@+id/btnAdd"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/btnadd" />
+
+        <ImageButton
+            android:id="@+id/btnProfile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/btnprofile" />
+
+        <ImageButton
+            android:id="@+id/btnCommunity"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.1"
+            android:background="@null"
+            android:src="@drawable/btncommunity" />
+    </LinearLayout>
+</LinearLayout>
