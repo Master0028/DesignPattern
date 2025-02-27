@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.ProfileActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="210dp"
+                    android:background="@drawable/profile_background"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_centerHorizontal="true"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="#27928E"
+                    android:layout_marginTop="110dp"
+                    android:src="@drawable/user1" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/userName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nguyen Ha My"
+                    android:fontFamily="@font/itim"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
+            </LinearLayout>
+
+<!--            <View-->
+<!--                android:layout_width="320dp"-->
+<!--                android:layout_height="1dp"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:background="@color/gray"-->
+<!--                android:layout_gravity="center"/>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnChangePassword"
+                        android:drawableLeft="@drawable/baseline_lock_24"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ripple_effect1"                        android:textColor="@drawable/button_text_color_selector"
+                        android:gravity="left"
+                        android:textAllCaps="false"
+                        android:foreground="@drawable/effect"
+                        android:clickable="true"
+                        android:padding="10dp"
+                        android:drawablePadding="10dp"
+                        android:fontFamily="@font/itim"
+                        android:textSize="20sp"
+                        android:layout_gravity="center"
+                        android:text="Change password"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:orientation="horizontal">
+                    <Button
+                        android:drawableLeft="@drawable/baseline_person_24"
+                        android:id="@+id/btnShowUserProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ripple_effect1"                        android:textColor="@drawable/button_text_color_selector"
+                        android:foreground="@drawable/effect"                        android:clickable="true"
+                        android:gravity="left"
+                        android:textSize="20sp"
+                        android:padding="10dp"
+                        android:textAllCaps="false"
+                        android:drawablePadding="10dp"
+                        android:fontFamily="@font/itim"
+                        android:layout_gravity="center"
+                        android:text="Profile detail"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:orientation="horizontal">
+                    <Button
+                        android:drawableLeft="@drawable/baseline_stars_24_bl"
+                        android:id="@+id/btnAchievement"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@drawable/button_text_color_selector"
+                        android:foreground="@drawable/effect"
+                        android:clickable="true"
+                        android:background="@drawable/ripple_effect1"                        android:padding="10dp"
+                        android:drawablePadding="10dp"
+                        android:gravity="left"
+                        android:textSize="20sp"
+                        android:textAllCaps="false"
+                        android:fontFamily="@font/itim"
+                        android:layout_gravity="center"
+                        android:text="Achievement"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:orientation="horizontal">
+                    <Button
+                        android:drawableLeft="@drawable/baseline_delete_24"
+                        android:id="@+id/btnDelAccount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@drawable/button_text_color_selector"
+                        android:gravity="left"
+                        android:background="@drawable/ripple_effect1"
+                        android:padding="10dp"
+                        android:drawablePadding="10dp"
+                        android:foreground="@drawable/effect"                        android:clickable="true"
+                        android:textSize="20sp"
+                        android:textAllCaps="false"
+                        android:fontFamily="@font/itim"
+                        android:layout_gravity="center"
+                        android:text="Delete account"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="320dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/gray"
+                    android:layout_gravity="center"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:orientation="horizontal">
+                    <Button
+                        android:drawableLeft="@drawable/baseline_logout_24"
+                        android:id="@+id/btnLogout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#CC0000"
+                        android:foreground="@drawable/effect"
+                        android:clickable="true"
+                        android:background="@drawable/ripple_effect1"                        android:padding="10dp"
+                        android:drawablePadding="10dp"
+                        android:gravity="left"
+                        android:textSize="20sp"
+                        android:textAllCaps="false"
+                        android:fontFamily="@font/itim"
+                        android:layout_gravity="center"
+                        android:text="Logout"/>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnBackHome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:foreground="@drawable/effect"
+                    android:clickable="true"
+                    android:layout_marginTop="40dp"
+                    android:background="@drawable/ripple_effect3"                        android:padding="10dp"
+                    android:layout_marginHorizontal="18dp"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/itim"
+                    android:layout_gravity="center"
+                    android:text="Back to Home Page"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

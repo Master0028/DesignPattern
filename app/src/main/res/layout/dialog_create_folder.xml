@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="250dp"
+    android:layout_height="200dp"
+    android:layout_gravity="center"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="@drawable/dialog_background1"
+    android:padding="20dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create new folder"
+        android:textSize="23sp"
+        android:textColor="@color/black"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/itim"
+        android:paddingBottom="10dp" />
+
+    <EditText
+        android:id="@+id/etFolderName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Title"
+        android:fontFamily="@font/itim"
+        android:padding="10dp"
+        android:background="#EFEFEF" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnCreate"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:text="Create"
+            android:textAllCaps="false"
+            android:fontFamily="@font/itim"
+            android:textColor="@color/white"
+            android:background="@drawable/customize_button_create" />
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="100dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="30dp"
+            android:text="Cancel"
+            android:textAllCaps="false"
+            android:fontFamily="@font/itim"
+            android:textColor="@color/black"
+            android:background="@drawable/customize_button_cancle1" />
+    </LinearLayout>
+</LinearLayout>

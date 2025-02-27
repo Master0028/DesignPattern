@@ -1,0 +1,14 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#40000000"/> <!-- Màu đen với độ trong suốt -->
+            <corners android:radius="16dp"/> <!-- Độ cong của góc -->
+        </shape>
+    </item>
+    <item android:top="4dp" android:left="4dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/white"/> <!-- Màu nền cho CardView -->
+            <corners android:radius="16dp"/> <!-- Độ cong của góc -->
+        </shape>
+    </item>
+</layer-list>
