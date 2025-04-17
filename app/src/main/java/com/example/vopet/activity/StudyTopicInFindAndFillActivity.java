@@ -28,6 +28,7 @@ import com.example.vopet.model.Category;
 import com.example.vopet.pattern.SessionSingleton;
 import com.example.vopet.pattern.command.CommandButton;
 import com.example.vopet.pattern.command.IBundleProvider;
+import com.example.vopet.pattern.command.ICommand;
 import com.example.vopet.pattern.command.OpenActivityCommand;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -128,7 +129,7 @@ public class StudyTopicInFindAndFillActivity extends AppCompatActivity implement
             finish(); // Trở về màn hình trước đó
         });
 
-        OpenActivityCommand openActivityCommand = new OpenActivityCommand(StudyTopicInFindAndFillActivity.this, StudyByFindAndFillActivity.class, this);
+        ICommand openActivityCommand = new OpenActivityCommand(StudyTopicInFindAndFillActivity.this, StudyByFindAndFillActivity.class, this);
 
         btnStart.setCommand(openActivityCommand);
 

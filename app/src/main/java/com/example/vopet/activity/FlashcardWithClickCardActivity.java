@@ -28,6 +28,7 @@ import com.example.vopet.model.Category;
 import com.example.vopet.pattern.SessionSingleton;
 import com.example.vopet.pattern.command.CommandButton;
 import com.example.vopet.pattern.command.IBundleProvider;
+import com.example.vopet.pattern.command.ICommand;
 import com.example.vopet.pattern.command.OpenActivityCommand;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -119,7 +120,7 @@ public class FlashcardWithClickCardActivity extends AppCompatActivity implements
             finish();
         });
 
-        OpenActivityCommand openActivityCommand = new OpenActivityCommand(FlashcardWithClickCardActivity.this, StudyByFlashcardActivity.class, this);
+        ICommand openActivityCommand = new OpenActivityCommand(FlashcardWithClickCardActivity.this, StudyByFlashcardActivity.class, this);
 
         btnStart.setCommand(openActivityCommand);
 
