@@ -26,19 +26,22 @@ import com.example.vopet.adapter.CategoryAdapterInFlashcard;
 import com.example.vopet.adapter.MultiViewInFlashcardAdapter;
 import com.example.vopet.model.Category;
 import com.example.vopet.pattern.SessionSingleton;
+import com.example.vopet.pattern.command.CommandButton;
+import com.example.vopet.pattern.command.IBundleProvider;
+import com.example.vopet.pattern.command.OpenActivityCommand;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FlashcardWithClickCardActivity extends AppCompatActivity {
+public class FlashcardWithClickCardActivity extends AppCompatActivity implements IBundleProvider {
     Spinner spinner;
     CategoryAdapterInFlashcard categoryAdapterInFlashcard;
     private RecyclerView recyclerView;
     private MultiViewInFlashcardAdapter adapter;
     private List<HistoryStudy> historyStudyList;
-    private Button btnBack, btnShare, btnStart;
+    private Button btnBack, btnShare;
     private CheckBox checkBoxShuffle, checkBoxOnlyPriorityWords, checkBoxAutoSurf;
     private TextView level, tvTopicName, priority, memoryWord, learnPercent, progressBar;;
     private String topicName, userId;
@@ -47,6 +50,23 @@ public class FlashcardWithClickCardActivity extends AppCompatActivity {
     private boolean isOnlyPriorityWordsChecked = false;
     private boolean isAutoSurfChecked = false;
     private ProgressBar circularProgressBar;
+
+    private CommandButton btnStart;
+
+    @Override
+    public Bundle getBundle() {
+        Bundle bundle = new Bundle();
+
+        String selection = spinner.getSelectedItem().toString();
+
+        bundle.putBoolean("isShuffle", isShuffleChecked);
+        bundle.putBoolean("isOnlyPriorityWords", isOnlyPriorityWordsChecked);
+        bundle.putBoolean("isAutoSurf", isAutoSurfChecked);
+        bundle.putString("selection", selection);
+        bundle.putString("topicName", topicName);
+
+        return bundle;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,22 +116,13 @@ public class FlashcardWithClickCardActivity extends AppCompatActivity {
 
         loadInfoTopicForFlashcard();
         btnBack.setOnClickListener(v -> {
-            finish(); // Trở về màn hình trước đó
+            finish();
         });
-        btnStart.setOnClickListener(v -> {
-            String selection = spinner.getSelectedItem().toString();
 
-            // Gửi thông tin qua Intent
-            Intent intent1 = new Intent(FlashcardWithClickCardActivity.this, StudyByFlashcardActivity.class);
-            intent1.putExtra("isShuffle", isShuffleChecked);
-            intent1.putExtra("isOnlyPriorityWords", isOnlyPriorityWordsChecked);
-            intent1.putExtra("isAutoSurf", isAutoSurfChecked);
-            intent1.putExtra("selection", selection);
-            intent1.putExtra("topicName", topicName);
+        OpenActivityCommand openActivityCommand = new OpenActivityCommand(FlashcardWithClickCardActivity.this, StudyByFlashcardActivity.class, this);
 
-            // Chuyển sang màn hình tiếp theo
-            startActivity(intent1);
-        });
+        btnStart.setCommand(openActivityCommand);
+
         btnShare.setOnClickListener(v -> showShareDialog());
         historyStudyList = new ArrayList<>();
 

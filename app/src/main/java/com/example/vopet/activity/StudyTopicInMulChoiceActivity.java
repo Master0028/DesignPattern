@@ -28,6 +28,9 @@ import com.example.vopet.adapter.CategoryAdapterInFlashcard;
 import com.example.vopet.adapter.MultiViewInMulChoiceAdapter;
 import com.example.vopet.model.Category;
 import com.example.vopet.pattern.SessionSingleton;
+import com.example.vopet.pattern.command.CommandButton;
+import com.example.vopet.pattern.command.IBundleProvider;
+import com.example.vopet.pattern.command.OpenMulChoiceActivityCommand;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -37,13 +40,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
-public class StudyTopicInMulChoiceActivity extends AppCompatActivity {
+public class StudyTopicInMulChoiceActivity extends AppCompatActivity implements IBundleProvider {
     Spinner spinner;
     CategoryAdapterInFlashcard categoryAdapterInFlashcard;
     private RecyclerView recyclerView;
     private MultiViewInMulChoiceAdapter adapter;
     private List<HistoryStudy> historyStudyList;
-    private Button btnBack, btnShare, btnStart;
+    private Button btnBack, btnShare;
     private CheckBox checkBoxShuffle, checkBoxOnlyPriorityWords, checkBoxAutoSpeaking;
     private TextView level, tvTopicName, priority, memoryWord, learnPercent, progressBar;
     private String topicName, userId;
@@ -53,6 +56,28 @@ public class StudyTopicInMulChoiceActivity extends AppCompatActivity {
     private boolean isOnlyPriorityWordsChecked = false;
     private TextToSpeech textToSpeech;
     private boolean isAutoSpeakingChecked = false;
+
+    CommandButton btnStart;
+
+    @Override
+    public Bundle getBundle() {
+        isOnlyPriorityWordsChecked = checkBoxOnlyPriorityWords.isChecked();
+        isShuffleChecked = checkBoxShuffle.isChecked();
+        isAutoSpeakingChecked = checkBoxAutoSpeaking.isChecked();
+
+        String selectedLanguage = spinner.getSelectedItem().toString();
+
+        Bundle bundle = new Bundle();
+
+        bundle.putString("topicName", topicName);
+        bundle.putString("selection", selectedLanguage);
+        bundle.putBoolean("isOnlyPriorityWords", isOnlyPriorityWordsChecked);
+        bundle.putBoolean("isShuffle", isShuffleChecked);
+        bundle.putBoolean("isAutoSpeakingChecked", isAutoSpeakingChecked);
+
+        return bundle;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,13 +147,9 @@ public class StudyTopicInMulChoiceActivity extends AppCompatActivity {
 
         btnShare.setOnClickListener(v -> showShareDialog());
 
-        btnStart.setOnClickListener(v -> {
-            isOnlyPriorityWordsChecked = checkBoxOnlyPriorityWords.isChecked();
-            isShuffleChecked = checkBoxShuffle.isChecked();
-            isAutoSpeakingChecked = checkBoxAutoSpeaking.isChecked();  // Lưu trạng thái checkbox AutoSpeaking
-            btnStartOnClick();
-        });
+        OpenMulChoiceActivityCommand openMulChoiceActivityCommand = new OpenMulChoiceActivityCommand(StudyTopicInMulChoiceActivity.this, StudyByMulChoiceActivity.class, this);
 
+        btnStart.setCommand(openMulChoiceActivityCommand);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,72 +222,72 @@ public class StudyTopicInMulChoiceActivity extends AppCompatActivity {
                 });
     }
 
-    private void btnStartOnClick() {
-        String selectedLanguage = spinner.getSelectedItem().toString();
-//        String creatorId = getIntent().getStringExtra("creatorId");
-        db.collection("topics")
-                .whereEqualTo("ownerId", userId)
-                .whereEqualTo("name", topicName)
-                .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    if (!queryDocumentSnapshots.isEmpty()) {
-                        for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                            document.getReference().collection("vocabularies")
-                                    .get()
-                                    .addOnSuccessListener(vocabSnapshots -> {
-                                        topicName = getIntent().getStringExtra("topicName");
-                                        ArrayList<String> wordsList = new ArrayList<>();
-                                        ArrayList<String> meaningsList = new ArrayList<>();
-                                        ArrayList<String> pronunciationList = new ArrayList<>();
-
-                                        for (QueryDocumentSnapshot vocab : vocabSnapshots) {
-                                            // Kiểm tra nếu "Only Priority Words" được chọn thì chỉ lấy từ có priority = true
-                                            if (isOnlyPriorityWordsChecked && !vocab.getBoolean("priority")) {
-                                                continue; // Bỏ qua từ không có priority = true
-                                            }
-
-                                            if ("English".equals(selectedLanguage)) {
-                                                // Display words in English, meanings in Vietnamese
-                                                wordsList.add(vocab.getString("english"));
-                                                meaningsList.add(vocab.getString("meaning"));
-                                            } else {
-                                                // Display meanings in Vietnamese, words in English
-                                                wordsList.add(vocab.getString("meaning"));
-                                                meaningsList.add(vocab.getString("english"));
-                                            }
-                                            pronunciationList.add(vocab.getString("pronounce"));
-                                        }
-
-                                        // Nếu chọn Shuffle thì trộn ngẫu nhiên danh sách từ vựng
-                                        if (isShuffleChecked) {
-                                            long seed = System.nanoTime();
-                                            Collections.shuffle(wordsList, new java.util.Random(seed));
-                                            Collections.shuffle(meaningsList, new java.util.Random(seed));
-                                            Collections.shuffle(pronunciationList, new java.util.Random(seed));
-                                        }
-
-                                        // Truyền danh sách từ vựng qua intent
-                                        Intent intent1 = new Intent(StudyTopicInMulChoiceActivity.this, StudyByMulChoiceActivity.class);
-                                        intent1.putStringArrayListExtra("wordsList", wordsList);
-                                        intent1.putStringArrayListExtra("meaningsList", meaningsList);
-                                        intent1.putStringArrayListExtra("pronunciationList", pronunciationList);
-                                        intent1.putExtra("selectedLanguage", selectedLanguage); // Pass the selected language
-                                        intent1.putExtra("isAutoSpeakingChecked", isAutoSpeakingChecked);
-                                        intent1.putExtra("topicName", topicName);
-                                        startActivity(intent1);
-                                    })
-                                    .addOnFailureListener(e -> {
-                                        Toast.makeText(this, "Failed to load vocabularies: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                    });
-                        }
-                    } else {
-                        Toast.makeText(this, "No topics found", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(this, "Failed to load topics: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                });
-    }
+//    private void btnStartOnClick() {
+//        isOnlyPriorityWordsChecked = checkBoxOnlyPriorityWords.isChecked();
+//        isShuffleChecked = checkBoxShuffle.isChecked();
+//        isAutoSpeakingChecked = checkBoxAutoSpeaking.isChecked();  // Lưu trạng thái checkbox AutoSpeaking
+//
+////        String creatorId = getIntent().getStringExtra("creatorId");
+//        db.collection("topics")
+//                .whereEqualTo("ownerId", userId)
+//                .whereEqualTo("name", topicName)
+//                .get()
+//                .addOnSuccessListener(queryDocumentSnapshots -> {
+//                    if (!queryDocumentSnapshots.isEmpty()) {
+//                        for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+//                            document.getReference().collection("vocabularies")
+//                                    .get()
+//                                    .addOnSuccessListener(vocabSnapshots -> {
+//                                        topicName = getIntent().getStringExtra("topicName");
+//                                        ArrayList<String> wordsList = new ArrayList<>();
+//                                        ArrayList<String> meaningsList = new ArrayList<>();
+//                                        ArrayList<String> pronunciationList = new ArrayList<>();
+//
+//                                        for (QueryDocumentSnapshot vocab : vocabSnapshots) {
+//                                            // Kiểm tra nếu "Only Priority Words" được chọn thì chỉ lấy từ có priority = true
+//                                            if (isOnlyPriorityWordsChecked && !vocab.getBoolean("priority")) {
+//                                                continue; // Bỏ qua từ không có priority = true
+//                                            }
+//
+//                                            if ("English".equals(selectedLanguage)) {
+//                                                // Display words in English, meanings in Vietnamese
+//                                                wordsList.add(vocab.getString("english"));
+//                                                meaningsList.add(vocab.getString("meaning"));
+//                                            } else {
+//                                                // Display meanings in Vietnamese, words in English
+//                                                wordsList.add(vocab.getString("meaning"));
+//                                                meaningsList.add(vocab.getString("english"));
+//                                            }
+//                                            pronunciationList.add(vocab.getString("pronounce"));
+//                                        }
+//
+//                                        // Nếu chọn Shuffle thì trộn ngẫu nhiên danh sách từ vựng
+//                                        if (isShuffleChecked) {
+//                                            long seed = System.nanoTime();
+//                                            Collections.shuffle(wordsList, new java.util.Random(seed));
+//                                            Collections.shuffle(meaningsList, new java.util.Random(seed));
+//                                            Collections.shuffle(pronunciationList, new java.util.Random(seed));
+//                                        }
+//
+//                                        // Truyền danh sách từ vựng qua intent
+//                                        Intent intent1 = new Intent(StudyTopicInMulChoiceActivity.this, StudyByMulChoiceActivity.class);
+//                                        intent1.putStringArrayListExtra("wordsList", wordsList);
+//                                        intent1.putStringArrayListExtra("meaningsList", meaningsList);
+//                                        intent1.putStringArrayListExtra("pronunciationList", pronunciationList);
+//                                        startActivity(intent1);
+//                                    })
+//                                    .addOnFailureListener(e -> {
+//                                        Toast.makeText(this, "Failed to load vocabularies: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+//                                    });
+//                        }
+//                    } else {
+//                        Toast.makeText(this, "No topics found", Toast.LENGTH_SHORT).show();
+//                    }
+//                })
+//                .addOnFailureListener(e -> {
+//                    Toast.makeText(this, "Failed to load topics: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+//                });
+//    }
 
     private void showShareDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

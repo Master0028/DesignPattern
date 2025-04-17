@@ -26,19 +26,22 @@ import com.example.vopet.adapter.CategoryAdapterInFlashcard;
 import com.example.vopet.adapter.MultiViewInFindAndFillAdapter;
 import com.example.vopet.model.Category;
 import com.example.vopet.pattern.SessionSingleton;
+import com.example.vopet.pattern.command.CommandButton;
+import com.example.vopet.pattern.command.IBundleProvider;
+import com.example.vopet.pattern.command.OpenActivityCommand;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudyTopicInFindAndFillActivity extends AppCompatActivity {
+public class StudyTopicInFindAndFillActivity extends AppCompatActivity implements IBundleProvider {
     Spinner spinner;
     CategoryAdapterInFlashcard categoryAdapterInFlashcard;
     private RecyclerView recyclerView;
     private MultiViewInFindAndFillAdapter adapter;
     private List<HistoryStudy> historyStudyList;
-    private Button btnBack, btnShare, btnStart;
+    private Button btnBack, btnShare;
     private CheckBox checkBoxShuffle, checkBoxOnlyPriorityWords;
     private TextView level, tvTopicName, priority, memoryWord, learnPercent, progressBar;
     private String topicName, userId;
@@ -47,6 +50,24 @@ public class StudyTopicInFindAndFillActivity extends AppCompatActivity {
     private boolean isOnlyPriorityWordsChecked = false;
     private boolean isAutoSurfChecked = false;
     private ProgressBar circularProgressBar, progressBar1, progressBar2;
+
+    private CommandButton btnStart;
+
+    @Override
+    public Bundle getBundle() {
+        Bundle bundle = new Bundle();
+
+        boolean isShuffle = checkBoxShuffle.isChecked();
+        boolean isOnlyPriorityWords = checkBoxOnlyPriorityWords.isChecked();
+        String selection = spinner.getSelectedItem().toString();
+
+        // Gửi thông tin qua Intent
+        bundle.putBoolean("isShuffle", isShuffle);
+        bundle.putBoolean("isOnlyPriorityWords", isOnlyPriorityWords);
+        bundle.putString("selection", selection);
+        bundle.putString("topicName", topicName);
+        return bundle;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,22 +127,11 @@ public class StudyTopicInFindAndFillActivity extends AppCompatActivity {
         btnBack.setOnClickListener(v -> {
             finish(); // Trở về màn hình trước đó
         });
-        btnStart.setOnClickListener(v -> {
-            // Lấy thông tin từ CheckBox và Spinner
-            boolean isShuffle = checkBoxShuffle.isChecked();
-            boolean isOnlyPriorityWords = checkBoxOnlyPriorityWords.isChecked();
-            String selection = spinner.getSelectedItem().toString();
 
-            // Gửi thông tin qua Intent
-            Intent intent1 = new Intent(StudyTopicInFindAndFillActivity.this, StudyByFindAndFillActivity.class);
-            intent1.putExtra("isShuffle", isShuffle);
-            intent1.putExtra("isOnlyPriorityWords", isOnlyPriorityWords);
-            intent1.putExtra("selection", selection);
-            intent1.putExtra("topicName", topicName);
+        OpenActivityCommand openActivityCommand = new OpenActivityCommand(StudyTopicInFindAndFillActivity.this, StudyByFindAndFillActivity.class, this);
 
-            // Chuyển sang màn hình tiếp theo
-            startActivity(intent1);
-        });
+        btnStart.setCommand(openActivityCommand);
+
         btnShare.setOnClickListener(v -> showShareDialog());
 
         btnAdd.setOnClickListener(new View.OnClickListener() {

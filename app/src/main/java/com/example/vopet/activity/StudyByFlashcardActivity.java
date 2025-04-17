@@ -29,8 +29,6 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.vopet.R;
 import com.example.vopet.model.HistoryStudy;
 import com.example.vopet.model.Vocabulary;
-import com.example.vopet.pattern.Command;
-import com.example.vopet.pattern.FlipCardCommand;
 import com.example.vopet.pattern.SessionSingleton;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -59,8 +57,6 @@ public class StudyByFlashcardActivity extends AppCompatActivity {
     private ImageView imgWord;
     private Handler autoSurfHandler = new Handler();
     private Runnable autoSurfRunnable;
-
-    private Command flipCardCommand;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,17 +92,18 @@ public class StudyByFlashcardActivity extends AppCompatActivity {
         tvStt = findViewById(R.id.tvStt);
         layout = findViewById(R.id.layout);
 
+        Bundle bundle = getIntent().getExtras();
+
         // Lấy topicName và trạng thái shuffle, auto-surf từ Intent
-        topicName = getIntent().getStringExtra("topicName");
-        isAutoSurf = getIntent().getBooleanExtra("isAutoSurf", false);
-        isShuffle = getIntent().getBooleanExtra("isShuffle", false);
-        isOnlyPriorityWords = getIntent().getBooleanExtra("isOnlyPriorityWords", false);
-        String selection = getIntent().getStringExtra("selection");
+        topicName = bundle.getString("topicName");
+        isAutoSurf = bundle.getBoolean("isAutoSurf", false);
+        isShuffle = bundle.getBoolean("isShuffle", false);
+        isOnlyPriorityWords = bundle.getBoolean("isOnlyPriorityWords", false);
+        String selection = bundle.getString("selection");
 
         // Kiểm tra lựa chọn và hiển thị mặt trước, mặt sau phù hợp
         frontLanguage = "Vietnamese".equals(selection) ? "Vietnamese" : "English";
         backLanguage = "Vietnamese".equals(selection) ? "English" : "Vietnamese";
-
 
         // Khởi tạo Text-to-Speech
         textToSpeech = new TextToSpeech(this, status -> {
@@ -174,10 +171,8 @@ public class StudyByFlashcardActivity extends AppCompatActivity {
 
         btnPause.setOnClickListener(v -> togglePause());
 
-        flipCardCommand = new FlipCardCommand(this);
-
         // Hiệu ứng lật thẻ
-        btnPress.setOnClickListener(v -> flipCardCommand.execute());
+        btnPress.setOnClickListener(v -> flipCard());
 
         // Nút Next
         btnNext.setOnClickListener(v -> {

@@ -93,11 +93,13 @@ public class StudyByFindAndFillActivity extends AppCompatActivity {
 
         startTime = System.currentTimeMillis();
 
+        Bundle bundle = getIntent().getExtras();
+
         // Lấy topicName và trạng thái shuffle, auto-surf từ Intent
-        topicName = getIntent().getStringExtra("topicName");
-        isShuffle = getIntent().getBooleanExtra("isShuffle", false);
-        isOnlyPriorityWords = getIntent().getBooleanExtra("isOnlyPriorityWords", false);
-        selection = getIntent().getStringExtra("selection");
+        topicName = bundle.getString("topicName");
+        isShuffle = bundle.getBoolean("isShuffle", false);
+        isOnlyPriorityWords = bundle.getBoolean("isOnlyPriorityWords", false);
+        selection = bundle.getString("selection");
         userId = SessionSingleton.getInstance().getUserId();
 
         textToSpeech = new TextToSpeech(this, status -> {

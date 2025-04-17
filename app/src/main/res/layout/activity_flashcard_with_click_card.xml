@@ -326,7 +326,7 @@
                     android:layout_centerVertical="true"
                     android:background="@drawable/spinner_border1" />
             </LinearLayout>
-            <Button
+            <com.example.vopet.pattern.command.CommandButton
                 android:id="@+id/btnStart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
